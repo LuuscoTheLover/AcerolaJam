@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnsw1o832jpaf"]
+
+[ext_resource type="PackedScene" uid="uid://b6n2rmhy386rg" path="res://Scripts/GravityComponent.tscn" id="1_2kcdy"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tx3ef"]
+friction = 0.75
+bounce = 0.29
+
+[sub_resource type="SphereMesh" id="SphereMesh_ut146"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h0tlo"]
+
+[node name="Ball" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.30258, 2.34001)
+physics_material_override = SubResource("PhysicsMaterial_tx3ef")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ut146")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_h0tlo")
+
+[node name="GravityComponent" parent="." instance=ExtResource("1_2kcdy")]

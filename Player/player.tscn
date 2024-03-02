@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://7toc68xoef4n"]
+
+[ext_resource type="Script" path="res://Player/PlayerMovement.cs" id="1_0k2fp"]
+[ext_resource type="PackedScene" uid="uid://b6n2rmhy386rg" path="res://Scripts/GravityComponent.tscn" id="2_irokn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_744d5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xe17g"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Neck", "Head")]
+script = ExtResource("1_0k2fp")
+Neck = NodePath("Neck")
+Head = NodePath("Neck/Head")
+WalkSpeed = 3.5
+RunSpeed = 6.0
+LowGravityJump = 1.0
+
+[node name="GravityComponent" parent="." instance=ExtResource("2_irokn")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_744d5")
+
+[node name="Neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Head" type="Camera3D" parent="Neck"]
+
+[node name="RayCast3D" type="RayCast3D" parent="Neck/Head"]
+target_position = Vector3(0, 0, -1)
+debug_shape_custom_color = Color(0.780392, 0, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_xe17g")
