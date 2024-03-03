@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://isb6pxqr1epo"]
+
+[ext_resource type="Script" path="res://Scripts/GravityController.cs" id="1_3mfg4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x581x"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80xvg"]
+transparency = 1
+albedo_color = Color(0.0156863, 0.435294, 1, 0.247059)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ui53l"]
+material = SubResource("StandardMaterial3D_80xvg")
+size = Vector3(10, 10, 10)
+
+[node name="GravitationArea" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60261, 5.49371)
+gravity = 1.215
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_x581x")
+
+[node name="GravityController" type="Node" parent="."]
+script = ExtResource("1_3mfg4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ui53l")
+
+[connection signal="body_entered" from="." to="GravityController" method="GravityBodyEnter"]
+[connection signal="body_exited" from="." to="GravityController" method="GravityBodyExited"]
