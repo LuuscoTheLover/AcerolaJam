@@ -36,7 +36,6 @@ public partial class Player : CharacterBody3D
 
     public override void _Process(double delta)
     {
-		GD.Print(gravity);
         base._Process(delta);
 		if (Input.IsActionJustPressed("esc") && Input.MouseMode == Input.MouseModeEnum.Captured) {
 			Input.MouseMode = Input.MouseModeEnum.Visible;

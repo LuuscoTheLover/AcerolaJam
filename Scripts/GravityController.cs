@@ -16,26 +16,7 @@ public partial class GravityController : Node
         base._Ready();
         _customSignal = GetNode<CustomSignals>("/root/CustomSignals");
         BodyList = new List<RigidBody3D>();
-        area = GetParent<Area3D>();
     }
-
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
-        if (Input.IsActionJustPressed("f")) {
-            Vector3 pos = area.Position;
-            pos.Z -= 1;
-            area.Position = pos;
-
-        }
-        if (Input.IsActionJustPressed("g")) {
-            Vector3 pos = area.Position;
-            pos.Z += 1;
-            area.Position = pos;
-
-        }
-    }
-
 
     public void GravityBodyEnter(Node body){
         if (body is RigidBody3D) {

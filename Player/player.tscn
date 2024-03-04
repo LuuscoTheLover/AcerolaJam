@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://7toc68xoef4n"]
+[gd_scene load_steps=6 format=3 uid="uid://7toc68xoef4n"]
 
 [ext_resource type="Script" path="res://Player/Player.cs" id="1_kceyg"]
+[ext_resource type="Script" path="res://Player/ShootingComponent.cs" id="2_im5jw"]
+[ext_resource type="Script" path="res://Player/GravitationDevice.cs" id="3_0fli7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_744d5"]
 
@@ -24,4 +26,8 @@ debug_shape_custom_color = Color(0.780392, 0, 0, 1)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_xe17g")
 
-[node name="PlayerMovement" type="Node" parent="."]
+[node name="ShootingComponent" type="Node" parent="."]
+script = ExtResource("2_im5jw")
+
+[node name="GravitationDevice" type="Node" parent="."]
+script = ExtResource("3_0fli7")
