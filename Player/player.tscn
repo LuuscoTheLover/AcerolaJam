@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://7toc68xoef4n"]
+[gd_scene load_steps=7 format=3 uid="uid://7toc68xoef4n"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_npuwa"]
 [ext_resource type="PackedScene" uid="uid://cmh3soixo4rog" path="res://Assets/gun.tscn" id="2_16ckg"]
 [ext_resource type="Script" path="res://Scripts/GravitationDevice.cs" id="3_exyk2"]
+[ext_resource type="Script" path="res://Scripts/PlayerMovement.cs" id="4_2odc6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_744d5"]
 
@@ -35,3 +36,6 @@ mesh = SubResource("CapsuleMesh_xe17g")
 
 [node name="GravitationDevice" type="Node" parent="."]
 script = ExtResource("3_exyk2")
+
+[node name="PlayerMovement" type="Node" parent="."]
+script = ExtResource("4_2odc6")

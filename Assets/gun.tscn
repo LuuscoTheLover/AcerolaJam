@@ -1,4 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmh3soixo4rog"]
+[gd_scene load_steps=11 format=3 uid="uid://cmh3soixo4rog"]
+
+[ext_resource type="Script" path="res://Scripts/Gun.cs" id="1_r8fk2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uunmn"]
 resource_name = "dark"
@@ -169,6 +171,7 @@ _data = {
 }
 
 [node name="Gun" type="Node3D"]
+script = ExtResource("1_r8fk2")
 
 [node name="GunMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_ym83l")
