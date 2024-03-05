@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bwudsfj3j8sks"]
 
-[ext_resource type="Script" path="res://Scripts/GravityController.cs" id="1_3mfg4"]
-[ext_resource type="Script" path="res://Player/GravitationArea.cs" id="1_prphh"]
+[ext_resource type="Script" path="res://Scripts/GravitationArea.cs" id="1_ki24m"]
+[ext_resource type="Script" path="res://Scripts/GravityController.cs" id="2_pap0m"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x581x"]
 size = Vector3(10, 10, 10)
@@ -16,13 +16,13 @@ size = Vector3(10, 10, 10)
 
 [node name="GravitationArea" type="Area3D"]
 gravity = 1.215
-script = ExtResource("1_prphh")
+script = ExtResource("1_ki24m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_x581x")
 
 [node name="GravityController" type="Node" parent="."]
-script = ExtResource("1_3mfg4")
+script = ExtResource("2_pap0m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ui53l")

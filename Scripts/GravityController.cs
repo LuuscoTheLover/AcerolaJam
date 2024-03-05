@@ -9,7 +9,6 @@ public partial class GravityController : Node
     public float LowGravity = 0.01f;
     private CustomSignals _customSignal;
     public List<RigidBody3D> BodyList;
-    public Area3D area;
 
     public override void _Ready()
     {

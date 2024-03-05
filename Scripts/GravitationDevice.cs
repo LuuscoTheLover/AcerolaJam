@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class GravitationDevice : Node
 {
-	public PackedScene GravitationArea = GD.Load<PackedScene>("res://Player/GravitationArea.tscn");
+	public PackedScene GravitationArea = GD.Load<PackedScene>("res://Assets/GravitationArea.tscn");
 	public Player player;
 	public GravitationArea actualArea;
 	[Export] public float DelaySeconds = 10f;

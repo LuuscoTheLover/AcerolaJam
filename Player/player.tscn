@@ -1,15 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://7toc68xoef4n"]
 
-[ext_resource type="Script" path="res://Player/Player.cs" id="1_kceyg"]
-[ext_resource type="Script" path="res://Player/ShootingComponent.cs" id="2_im5jw"]
-[ext_resource type="Script" path="res://Player/GravitationDevice.cs" id="3_0fli7"]
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_npuwa"]
+[ext_resource type="PackedScene" uid="uid://cmh3soixo4rog" path="res://Assets/gun.tscn" id="2_16ckg"]
+[ext_resource type="Script" path="res://Scripts/GravitationDevice.cs" id="3_exyk2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_744d5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xe17g"]
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_kceyg")
+script = ExtResource("1_npuwa")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_744d5")
@@ -19,15 +19,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Head" type="Camera3D" parent="Neck"]
 
-[node name="RayCast3D" type="RayCast3D" parent="Neck/Head"]
-target_position = Vector3(0, 0, -1)
+[node name="Gun" parent="Neck/Head" instance=ExtResource("2_16ckg")]
+transform = Transform3D(-0.984808, -0.0151344, 0.172988, 0, 0.996195, 0.0871557, -0.173648, 0.0858316, -0.98106, 0.69, -0.4, -0.745)
+
+[node name="AimRay" type="RayCast3D" parent="Neck/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.18232)
+target_position = Vector3(0, 0, -100)
 debug_shape_custom_color = Color(0.780392, 0, 0, 1)
+
+[node name="AimRayEnd" type="Node3D" parent="Neck/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_xe17g")
 
-[node name="ShootingComponent" type="Node" parent="."]
-script = ExtResource("2_im5jw")
-
 [node name="GravitationDevice" type="Node" parent="."]
-script = ExtResource("3_0fli7")
+script = ExtResource("3_exyk2")

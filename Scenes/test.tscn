@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7jo3b1bei1he"]
+[gd_scene load_steps=11 format=3 uid="uid://b7jo3b1bei1he"]
 
 [ext_resource type="PackedScene" uid="uid://7toc68xoef4n" path="res://Player/player.tscn" id="1_8tw66"]
+[ext_resource type="PackedScene" uid="uid://dnf2epiwewmxu" path="res://Scenes/enemy.tscn" id="1_37y23"]
 [ext_resource type="PackedScene" uid="uid://dnsw1o832jpaf" path="res://Assets/ball.tscn" id="2_6bw7t"]
 [ext_resource type="Script" path="res://Scripts/RoomCenter.cs" id="3_nnmx2"]
 
@@ -19,6 +20,7 @@ sky_material = SubResource("ProceduralSkyMaterial_pc35y")
 [sub_resource type="Environment" id="Environment_wk07d"]
 background_mode = 2
 sky = SubResource("Sky_5rgd4")
+glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sp1nv"]
 albedo_color = Color(0.698039, 0.0784314, 0.372549, 1)
@@ -35,6 +37,9 @@ height = 0.2
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wk07d")
 
+[node name="Enemy" parent="WorldEnvironment" instance=ExtResource("1_37y23")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.09314, -6.66033)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.857167, -0.385741, 0.341275, 0, 0.66262, 0.748956, -0.515038, 0.64198, -0.567976, 0, -23.5845, 0)
 light_color = Color(0.921569, 0.87451, 0.686275, 1)
@@ -44,24 +49,28 @@ shadow_enabled = true
 transform = Transform3D(2.85013, 0, 0, 0, 2.59014, 0, 0, 0, 3.04389, 0.037072, -4.89277, 0)
 material_override = SubResource("StandardMaterial3D_sp1nv")
 use_collision = true
+collision_layer = 3
 size = Vector3(10, 1, 10)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
 transform = Transform3D(-1.13219e-07, 2.85013, 0, -2.59014, -1.24583e-07, 0, 0, 0, 3.04389, -14.5712, 5.56375, 0)
 material_override = SubResource("StandardMaterial3D_sp1nv")
 use_collision = true
+collision_layer = 3
 size = Vector3(10, 1, 10)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
 transform = Transform3D(-1.13219e-07, 2.85013, 0, -2.59014, -1.24583e-07, 0, 0, 0, 3.04389, 14.4169, 5.56375, 0)
 material_override = SubResource("StandardMaterial3D_sp1nv")
 use_collision = true
+collision_layer = 3
 size = Vector3(10, 1, 10)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(2.85013, 0, 0, 0, 2.59014, 0, 0, 0, 3.04389, 0.037072, 16.5889, 0)
 material_override = SubResource("StandardMaterial3D_fujg6")
 use_collision = true
+collision_layer = 3
 size = Vector3(10, 1, 10)
 
 [node name="Player" parent="." instance=ExtResource("1_8tw66")]

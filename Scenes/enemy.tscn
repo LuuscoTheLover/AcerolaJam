@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnf2epiwewmxu"]
+
+[ext_resource type="PackedScene" uid="uid://dk7oouqjpkphq" path="res://Assets/HitboxComponent.tscn" id="1_0xq6d"]
+[ext_resource type="Script" path="res://Scripts/HealthComponent.cs" id="2_06q4r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_40gr7"]
+albedo_color = Color(0.560784, 0.454902, 0.2, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_l56j8"]
+material = SubResource("StandardMaterial3D_40gr7")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lkl72"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_207t8"]
+
+[node name="Enemy" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_l56j8")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_lkl72")
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("HealthComponent") instance=ExtResource("1_0xq6d")]
+HealthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
+shape = SubResource("CapsuleShape3D_207t8")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_06q4r")
+MaxHealth = 40.0
