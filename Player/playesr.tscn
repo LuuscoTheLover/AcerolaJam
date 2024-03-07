@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_npuwa"]
 [ext_resource type="PackedScene" uid="uid://cmh3soixo4rog" path="res://Assets/gun.tscn" id="2_16ckg"]
 [ext_resource type="Script" path="res://Scripts/GravitationDevice.cs" id="3_exyk2"]
-[ext_resource type="Script" path="res://Scripts/PlayerMovement.cs" id="4_2odc6"]
+[ext_resource type="Script" path="res://Scripts/PlayerMovemenssssst.cs" id="4_2odc6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_744d5"]
 

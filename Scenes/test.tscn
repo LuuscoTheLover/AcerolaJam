@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b7jo3b1bei1he"]
+[gd_scene load_steps=14 format=3 uid="uid://b7jo3b1bei1he"]
 
-[ext_resource type="PackedScene" uid="uid://7toc68xoef4n" path="res://Player/player.tscn" id="1_8tw66"]
 [ext_resource type="PackedScene" uid="uid://dnf2epiwewmxu" path="res://Scenes/enemy.tscn" id="1_37y23"]
 [ext_resource type="PackedScene" uid="uid://dnsw1o832jpaf" path="res://Assets/ball.tscn" id="2_6bw7t"]
+[ext_resource type="Script" path="res://addons/FreeCam/free_look_camera.gd" id="3_g2nsb"]
 [ext_resource type="Script" path="res://Scripts/RoomCenter.cs" id="3_nnmx2"]
+[ext_resource type="PackedScene" uid="uid://cms8iki46cp6i" path="res://Scenes/player.tscn" id="4_tkjka"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pc35y"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -25,6 +26,12 @@ glow_enabled = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sp1nv"]
 albedo_color = Color(0.698039, 0.0784314, 0.372549, 1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_aktsf"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jh0ps"]
+size = Vector3(10, 1, 10)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fujg6"]
 albedo_color = Color(1, 0, 0, 1)
 
@@ -45,12 +52,16 @@ transform = Transform3D(-0.857167, -0.385741, 0.341275, 0, 0.66262, 0.748956, -0
 light_color = Color(0.921569, 0.87451, 0.686275, 1)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(2.85013, 0, 0, 0, 2.59014, 0, 0, 0, 3.04389, 0.037072, -4.89277, 0)
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(3.89421, 0, 0, 0, 1, 0, 0, 0, 4.56253, 0, -4.24149, 0)
+
+[node name="Floor" type="MeshInstance3D" parent="StaticBody3D"]
 material_override = SubResource("StandardMaterial3D_sp1nv")
-use_collision = true
-collision_layer = 3
-size = Vector3(10, 1, 10)
+mesh = SubResource("BoxMesh_aktsf")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_jh0ps")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
 transform = Transform3D(-1.13219e-07, 2.85013, 0, -2.59014, -1.24583e-07, 0, 0, 0, 3.04389, -14.5712, 5.56375, 0)
@@ -73,17 +84,12 @@ use_collision = true
 collision_layer = 3
 size = Vector3(10, 1, 10)
 
-[node name="Player" parent="." instance=ExtResource("1_8tw66")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5823, -3.04181)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.121, 9.111)
-
 [node name="Ball" parent="." instance=ExtResource("2_6bw7t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.30258, 3.56779)
 
 [node name="Ball2" parent="." instance=ExtResource("2_6bw7t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0898099, 5.30258, 0.720968)
+visible = false
 
 [node name="AreaPos" type="Node3D" parent="." groups=["RoomCenter"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1407, 0, 0)
@@ -108,3 +114,17 @@ RoomSize = Vector3(10, 10, 10)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AreaPos3"]
 mesh = SubResource("SphereMesh_5mcof")
+
+[node name="Player" parent="." instance=ExtResource("4_tkjka")]
+transform = Transform3D(1, 0, 0, 0, 0.0258455, 0.999666, 0, -0.999666, 0.0258455, 0, 0, -2.30277)
+lock_rotation = true
+
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, -5.58794e-09, 0, 5.58794e-09, 1, 0, -2.24938, 2.76879)
+node_a = NodePath("..")
+node_b = NodePath("../../Ball2")
+exclude_nodes_from_collision = false
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.988282, 0.152641, 0, -0.152641, 0.988282, 0, 0, 1.04113)
+script = ExtResource("3_g2nsb")
