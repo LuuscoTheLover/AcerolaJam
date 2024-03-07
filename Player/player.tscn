@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://7toc68xoef4n"]
+[gd_scene load_steps=8 format=3 uid="uid://7toc68xoef4n"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_npuwa"]
 [ext_resource type="PackedScene" uid="uid://cmh3soixo4rog" path="res://Assets/gun.tscn" id="2_16ckg"]
+[ext_resource type="Script" path="res://Scripts/CameraMovementScript.cs" id="2_nm3rk"]
 [ext_resource type="Script" path="res://Scripts/GravitationDevice.cs" id="3_exyk2"]
-[ext_resource type="Script" path="res://Scripts/PlayerMovemenssssst.cs" id="4_2odc6"]
+[ext_resource type="Script" path="res://Scripts/PlayerMovement.cs" id="4_2odc6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_744d5"]
 
@@ -18,7 +19,10 @@ shape = SubResource("CapsuleShape3D_744d5")
 [node name="Neck" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="Head" type="Camera3D" parent="Neck"]
+[node name="Head" type="Camera3D" parent="Neck" node_paths=PackedStringArray("Neck", "Head")]
+script = ExtResource("2_nm3rk")
+Neck = NodePath("..")
+Head = NodePath(".")
 
 [node name="Gun" parent="Neck/Head" instance=ExtResource("2_16ckg")]
 transform = Transform3D(-0.984808, -0.0151344, 0.172988, 0, 0.996195, 0.0871557, -0.173648, 0.0858316, -0.98106, 0.69, -0.4, -0.745)
